@@ -6,42 +6,48 @@ import io from 'socket.io-client';
 
 class Table extends Component {
   state = {
-    socket: null,
-    ID: undefined,
-    Number: undefined,
-    Name: undefined
+    id: undefined,
+    number: undefined,
+    name: undefined
   };
 
   connectSocket = () => {
     const socketURL = 'http://localhost:3001/';
     const socket = io(socketURL);
     socket.on('connect', () => {
-      console.log('connected websocket server');
+      console.log('connected socket server');
     });
     socket.on('updates', (data) => {
-      console.log(data);
-      this.setState({
-        ID: data.number,
-        Number: data.number,
-        Name: data.name
+      data.map((x) => {
+        console.log(x.number);
+        console.log(x.name);
+        this.setState({
+          id: x.number,
+          number: x.number,
+          name: x.name
+        });
       });
     });
   };
+
+  componentDidMount() {
+    this.connectSocket();
+  }
 
   componentWillMount() {
     this.connectSocket();
   }
 
   render() {
-    const data = [
+    const columns = [
       {
         Header: 'ID',
-        accesor: 'this.state.number',
+        accesor: '{this.state.id}',
         sortable: false
       },
       {
         Header: 'Number',
-        accesor: '{this.state.number}',
+        accesor: 'this.state.number',
         sortable: true
       },
       {
@@ -52,7 +58,11 @@ class Table extends Component {
     ];
     return (
       <div>
-        <ReactTable columns={data} data={data} noDataText={'Loading...'} />
+        <ReactTable
+          columns={columns}
+          data={this.state.data}
+          noDataText={'Loading...'}
+        />
       </div>
     );
   }

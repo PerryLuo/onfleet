@@ -100,28 +100,23 @@ var names = [
   'JERRY',
   'DENNIS',
   'WALTER',
-  'PATRICK',
-  'PETER',
-  'HAROLD',
-  'DOUGLAS',
-  'HENRY',
-  'CARL',
-  'ARTHUR',
-  'RYAN',
-  'ROGER',
-  'JOE',
-  'JUAN',
-  'JACK',
-  'ALBERT',
-  'JONATHAN'
+  'PATRICK'
 ];
 const data = new Array();
 
+// Method on how to setTimeout within for loop looked
+// on https://stackoverflow.com/questions/7749090/how-to-use-setinterval-function-within-for-loop
 for (var i = 0; i < names.length; i++) {
-  let person = new Object();
-  person.number = i;
-  person.name = names[i];
-  data.push(person);
+  setTimeout(
+    (j) => {
+      let person = new Object();
+      person.number = j;
+      person.name = names[j];
+      data.push(person);
+    },
+    i * 1000,
+    i
+  );
 }
 
 module.exports = data;
