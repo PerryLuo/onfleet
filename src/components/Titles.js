@@ -8,7 +8,7 @@ class Titles extends Component {
     };
     return (
       <div>
-        <h1 style={style}>Onfleet Assignment</h1>
+        <h1 style={style}>Onfleet HW Assignment</h1>
       </div>
     );
   }

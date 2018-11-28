@@ -98,14 +98,12 @@ var names = [
   'GREGORY',
   'JOSHUA',
   'JERRY',
-  'DENNIS',
-  'WALTER',
-  'PATRICK'
+  'DENNIS'
 ];
 const data = new Array();
 
-// Method on how to setTimeout within for loop looked
-// on https://stackoverflow.com/questions/7749090/how-to-use-setinterval-function-within-for-loop
+// Method on how to setTimeout within for loop
+// https://stackoverflow.com/questions/7749090/how-to-use-setinterval-function-within-for-loop
 for (var i = 0; i < names.length; i++) {
   setTimeout(
     (j) => {
@@ -113,6 +111,7 @@ for (var i = 0; i < names.length; i++) {
       person.number = j;
       person.name = names[j];
       data.push(person);
+      console.log(data);
     },
     i * 1000,
     i
